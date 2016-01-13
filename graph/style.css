@@ -1,0 +1,18 @@
+.text {
+  color: black;
+  background-color: white;
+  font-weight: bold;
+}
+
+.code {
+  color: black;
+  background-color: lightgray;
+  max-width: 800px;
+}
+
+.print {
+  color: black;
+  background-color: lightgray;
+  max-width: 800px;
+  font-weight: bold;
+}
