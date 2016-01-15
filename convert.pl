@@ -3,15 +3,26 @@ use strict;
 
 print '<!doctype html><html><head><meta charset="utf-8"/><link rel="stylesheet" href="style.css"/><title>Doc</title></head><body>';
 
+# Buffers
 my $text='';
 my $js='';
 my $js_text='';
+
+my %char2entity=(
+  '<' => '&lt;', '>' => '&gt;', '&' => '&amp;', '"' => '&quot', "'" => '&apos;'
+);
+
+sub encode_html_entities($) {
+  my ($text) = @_;
+  $text =~ s/([><&\"\'])/$char2entity{$1}/ge;
+  return $text;
+}
 
 sub flush_text() {
   return if( $text eq '' );
 
   # TODO: Convert Markdown into HTML
-  print "<p class='text'>$text</p>";
+  print "<p class='text'>", encode_html_entities($text), "</p>";
 
   $text='';
 }
@@ -19,7 +30,7 @@ sub flush_text() {
 sub flush_js() {
   return if( $js eq '' );
 
-  print "<pre class='code'>$js_text</pre>";
+  print "<pre class='code'>", encode_html_entities($js_text), "</pre>";
   print "<script>$js</script>";
 
   $js = '';
