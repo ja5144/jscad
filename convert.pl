@@ -81,7 +81,7 @@ while(<>) {
     flush_js();
     flush_text();
 
-    print "<p class='print'>$1=<script>document.writeln($1);</script></p>\n";
+    print "<p class='print'><script>document.writeln($1);</script></p>\n";
   }
 
   elsif ( m{^(.*)//-$} ) {
